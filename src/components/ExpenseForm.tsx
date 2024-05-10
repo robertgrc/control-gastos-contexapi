@@ -44,6 +44,14 @@ const handleSubmit =(e:React.FormEvent<HTMLFormElement>)=>{
     }
     //Agregar un nuevo gasto
     dispatch({type:"add-expense", payload:{expense} })
+    //reiniciar
+
+    setExpense({
+        amount: 0,
+        expenseName: '',
+        category: '',
+        date: new Date()
+    })
 }
 
   return (
@@ -67,8 +75,8 @@ const handleSubmit =(e:React.FormEvent<HTMLFormElement>)=>{
                 placeholder="Añade el nombre del Gasto"
                 className="bg-slate-100 p-2"
                 name="expenseName" 
-                // value={expense.expenseName}
                 onChange={handleChange}
+                value={expense.expenseName}
             />
         </div>
         <div className="flex flex-col gap-2">
@@ -84,7 +92,7 @@ const handleSubmit =(e:React.FormEvent<HTMLFormElement>)=>{
                 placeholder="Añade la cantidad del gasto: ej. 300"
                 className="bg-slate-100 p-2"
                 name="amount" 
-                // value={expense.amount}
+                value={expense.amount}
                 onChange={handleChange}
             />
         </div>
@@ -100,7 +108,7 @@ const handleSubmit =(e:React.FormEvent<HTMLFormElement>)=>{
                 aria-placeholder="Añade la cantidad del gasto: ej.300"
                 className="bg-slate-100 p-2"
                 name="category"
-                // value={expense.category}
+                value={expense.category}
                 onChange={handleChange}
             >
                 <option value=""> -- Seleccione -- </option>
