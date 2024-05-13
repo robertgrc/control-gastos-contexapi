@@ -50,9 +50,15 @@ const handleSubmit =(e:React.FormEvent<HTMLFormElement>)=>{
         setError('Todos los campos son obligatorios')
         return
     }
-    //Agregar un nuevo gasto
-    dispatch({type:"add-expense", payload:{expense} })
-    //reiniciar
+    //Agregar o actualizar un gasto
+    if(state.editingId){
+        dispatch({type:"update-expense", payload: {expense:{id:state.editingId, ...expense}}})
+    } else {
+        
+        dispatch({type:"add-expense", payload:{expense} })
+    }
+
+    //reiniciar el state
 
     setExpense({
         amount: 0,
